@@ -14,7 +14,16 @@ cursor.execute("""
     """
 )
 
+
+
 def add_users_into_databaise(login, password):
     cursor.execute("""
     INSERT INTO users (login, password) VALUES(?,?)""", (login, password))
-    conn.commit()
+
+
+def insert_password_login():
+    cursor.fetchone("""
+    SELECT password FROM users WHERE login = ?,(login,)
+    """
+)
+conn.commit()
